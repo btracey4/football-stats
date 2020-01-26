@@ -54,5 +54,14 @@ public enum Team {
 	public Division getDivision() {
 		return division;
 	}
-	
+	public String getFullName() {
+		return String.format("%s %s", location, name);
+	}
+	public static Team getTeamByName(String name) {
+		for(Team team : values()) {
+			if(team.getName().equals(name) || team.getFullName().equals(name))
+				return team;
+		}
+		throw new IllegalArgumentException("No NFL team with the name: " + name);
+	}
 }
