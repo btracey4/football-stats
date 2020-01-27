@@ -11,16 +11,16 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import com.btracey4.footballstats.enums.Team;
-import com.btracey4.footballstats.hibernate.Game;
+import com.btracey4.footballstats.hibernate.NFLGameRecord;
 
-public class GameLoader {
-	private List<Game> games;
+public class NFLGameRecordLoader {
+	private List<NFLGameRecord> games;
 	private SimpleDateFormat dateFormat;
 	private Logger log;
 
 	private void initialize() {
 		dateFormat = new SimpleDateFormat("mm/dd/yyyy");
-		log = Logger.getLogger(GameLoader.class.getName());
+		log = Logger.getLogger(NFLGameRecordLoader.class.getName());
 		games = new ArrayList<>();
 	}
 	
@@ -33,7 +33,7 @@ public class GameLoader {
 			String currLine = "";
 			while((currLine = file.readLine()) != null) {
 				try {
-					Game game = getGameFromRawLine(currLine);
+					NFLGameRecord game = getGameFromRawLine(currLine);
 					games.add(game);
 				} catch (ParseException e) {
 					throw new IllegalArgumentException("Problem parsing the following line:\n"
@@ -49,9 +49,9 @@ public class GameLoader {
 	}
 	
 	
-	private Game getGameFromRawLine(String rawLine) throws ParseException{
+	private NFLGameRecord getGameFromRawLine(String rawLine) throws ParseException{
 		String[] fields = rawLine.split(",");
-		Game game = new Game();
+		NFLGameRecord game = new NFLGameRecord();
 		game.setSeason(Integer.parseInt(fields[0]));
 		game.setWeek(Integer.parseInt(fields[1]));
 		game.setGameDate(dateFormat.parse(fields[2]));
@@ -66,7 +66,7 @@ public class GameLoader {
 		return false;
 	}
 	
-	private void saveGamesToDatabase(List<Game> games) {
+	private void saveGamesToDatabase(List<NFLGameRecord> games) {
 		
 	}
 	
