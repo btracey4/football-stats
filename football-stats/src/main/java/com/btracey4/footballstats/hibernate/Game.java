@@ -16,7 +16,7 @@ import com.btracey4.footballstats.enums.Team;
  *
  */
 @Entity
-@Table(name="games")
+@Table(name="NFL_Season_Records")
 public class Game {
 	private int season;
 	private int week;

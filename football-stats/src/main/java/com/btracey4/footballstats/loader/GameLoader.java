@@ -14,18 +14,18 @@ import com.btracey4.footballstats.enums.Team;
 import com.btracey4.footballstats.hibernate.Game;
 
 public class GameLoader {
-	private String filepath;
 	private List<Game> games;
 	private SimpleDateFormat dateFormat;
 	private Logger log;
-	public GameLoader(String filepath) {
-		this.filepath = filepath;
+
+	private void initialize() {
 		dateFormat = new SimpleDateFormat("mm/dd/yyyy");
 		log = Logger.getLogger(GameLoader.class.getName());
 		games = new ArrayList<>();
 	}
 	
-	public void engage() throws Exception {
+	public void parseCSV(String filepath) throws Exception {
+		initialize();
 		log.info("Opening file: " + filepath);
 		try(BufferedReader file = new BufferedReader(new FileReader(filepath))){
 			String headerLine = file.readLine();
