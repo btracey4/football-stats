@@ -18,13 +18,13 @@ import com.btracey4.footballstats.enums.Team;
 @Entity
 @Table(name="games")
 public class Game {
+	private int season;
+	private int week;
+	private Date gameDate;
 	private Team homeTeam;
 	private Team guestTeam;
 	private int homeScore;
 	private int guestScore;
-	private int season;
-	private int week;
-	private Date gameDate;
 	
 	@Transient
 	public Team getHomeTeam() {
