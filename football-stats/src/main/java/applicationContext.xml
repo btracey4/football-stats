@@ -9,9 +9,7 @@
         
 	<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
 	  <property name="location">
-	  	<list>
-	  		<value>application.properties</value>
-	  	</list>
+	  		<value>classpath:application.properties</value>
 	  	</property>
 	  <property name="ignoreUnresolvablePlaceholders" value="true"/>
 	</bean>
@@ -32,12 +30,12 @@
 		<property name="dateFormatString" value="mm/dd/yyyy"/>
 	</bean>
 
-   <bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource">
+<!--    <bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource">
        <property name="driverClassName" value="${hibernate.connection.driver_class}"/>
        <property name="url" value="${spring.datasource.url}"/>
        <property name="username" value="${spring.datasource.username}"/>
        <property name="password" value="${spring.datasource.password}"/>
-   </bean>
+   </bean> -->
    
 	<bean id="dao" class="com.btracey4.footballstats.NFLGameRecordDao">
 		<property name="sessionFactory" ref="sessionFactory"/>

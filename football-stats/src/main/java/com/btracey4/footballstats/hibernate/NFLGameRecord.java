@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -17,6 +18,7 @@ import com.btracey4.footballstats.enums.Team;
 @Entity
 @Table(name="NFL_Season_Records")
 public class NFLGameRecord {
+	private int id;
 	private int season;
 	private int week;
 	private Date gameDate;
@@ -43,6 +45,16 @@ public class NFLGameRecord {
 		this.guestTeam = guestTeam;
 	}
 
+	@Id
+	@Column(name="id", updatable = false, nullable = false)
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	@Column(name="home_team")
 	public String getHomeTeamName() {
 		return homeTeam.getName();
