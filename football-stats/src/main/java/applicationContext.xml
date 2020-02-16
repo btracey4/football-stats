@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:context="http://www.springframework.org/schema/context"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+        
+	<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+	  <property name="location">
+	  	<list>
+	  		<value>application.properties</value>
+	  	</list>
+	  	</property>
+	  <property name="ignoreUnresolvablePlaceholders" value="true"/>
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="packagesToScan" value="com.btracey4.footballstats.hibernate"/>
+		<property name="hibernateProperties">
+	            <props>
+	                <prop key="spring.jpa.hibernate.ddl-auto">
+	                    {$spring.jpa.hibernate.ddl-auto}
+	                </prop>
+	            </props>
+	        </property>
+	</bean>
+	
+	<bean id="nflGameRecordLoader" class="com.btracey4.footballstats.loader.NFLGameRecordLoader">
+		<property name="dateFormatString" value="mm/dd/yyyy"/>
+	</bean>
+
+   <bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource">
+       <property name="driverClassName" value="${hibernate.connection.driver_class}"/>
+       <property name="url" value="${spring.datasource.url}"/>
+       <property name="username" value="${spring.datasource.username}"/>
+       <property name="password" value="${spring.datasource.password}"/>
+   </bean>
+   
+	<bean id="dao" class="com.btracey4.footballstats.NFLGameRecordDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+</beans>

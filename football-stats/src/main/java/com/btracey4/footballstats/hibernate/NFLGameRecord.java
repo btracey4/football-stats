@@ -10,9 +10,8 @@ import javax.persistence.Transient;
 import com.btracey4.footballstats.enums.Team;
 
 /**
- * 
- * @author btracey4
  * Hibernate class for NFL game
+ * @author btracey4
  *
  */
 @Entity

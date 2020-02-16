@@ -1,5 +1,11 @@
 package com.btracey4.footballstats.enums;
-
+/**
+ * Enum class for 32 NFL teams.
+ * Each Team consists of a location, a team name,
+ * and a {@link Team}
+ * @author btracey4
+ *
+ */
 public enum Team {
 
 	PATRIOTS("New England", "Patriots", Division.AFC_EAST),
@@ -54,6 +60,10 @@ public enum Team {
 	public Division getDivision() {
 		return division;
 	}
+	/**
+	 * 
+	 * @return Team Location + Team Name
+	 */
 	public String getFullName() {
 		return String.format("%s %s", location, name);
 	}

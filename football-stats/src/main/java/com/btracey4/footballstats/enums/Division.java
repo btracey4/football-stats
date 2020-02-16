@@ -1,5 +1,13 @@
 package com.btracey4.footballstats.enums;
 
+/**
+ * Enum class for NFL {@link Team}.
+ * Each Division consists of a conference (one
+ * of "AFC" or "NFC") and a region (one of Cardinal
+ * directions)
+ * @author btracey4
+ *
+ */
 public enum Division {
 	AFC_EAST("AFC", "East"),
 	AFC_NORTH("AFC", "North"),

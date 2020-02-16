@@ -15,21 +15,26 @@ import com.btracey4.footballstats.hibernate.NFLGameRecord;
 
 public class NFLGameRecordLoader {
 	private List<NFLGameRecord> games;
+	private String dateFormatString;
 	private SimpleDateFormat dateFormat;
 	private Logger log;
 
 	private void initialize() {
-		dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+		dateFormat = new SimpleDateFormat(dateFormatString);
 		log = Logger.getLogger(NFLGameRecordLoader.class.getName());
 		games = new ArrayList<>();
 	}
 	
+	/**
+	 * Given filepath to csv, parses file into {@link NFLGameRecord} objects,
+	 * then saves them in database
+	 * @param filepath
+	 * @throws Exception
+	 */
 	public void parseCSV(String filepath) throws Exception {
 		initialize();
 		log.info("Opening file: " + filepath);
 		try(BufferedReader file = new BufferedReader(new FileReader(filepath))){
-			String headerLine = file.readLine();
-			checkHeaders(headerLine);
 			String currLine = "";
 			while((currLine = file.readLine()) != null) {
 				try {
@@ -62,12 +67,18 @@ public class NFLGameRecordLoader {
 		return game;
 	}
 	
-	public boolean checkHeaders(String headerLine) {
-		return false;
-	}
-	
 	private void saveGamesToDatabase(List<NFLGameRecord> games) {
 		
 	}
+
+	public String getDateFormatString() {
+		return dateFormatString;
+	}
+
+	public void setDateFormatString(String dateFormatString) {
+		this.dateFormatString = dateFormatString;
+	}
+	
+	
 	
 }
