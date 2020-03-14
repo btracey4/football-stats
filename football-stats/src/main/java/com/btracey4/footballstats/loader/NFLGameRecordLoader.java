@@ -10,14 +10,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import com.btracey4.footballstats.NFLGameRecordDao;
 import com.btracey4.footballstats.enums.Team;
 import com.btracey4.footballstats.hibernate.NFLGameRecord;
-
+/**
+ * Loader class for parsing csv files with NFL matchup
+ * data and saving to 'nfl_game_records' schema. Expects order of
+ * csv file fields to be:
+ * 	<li>1) Season (start year)
+ *  <li>2) Week
+ *  <li>3) Game Date
+ *  <li>4) Home Team
+ *  <li>5) Guest Team
+ *  <li>6) Home Team score
+ *  <li>7) Guest Team score
+ * @author btracey4
+ *
+ */
 public class NFLGameRecordLoader {
 	private List<NFLGameRecord> games;
 	private String dateFormatString;
 	private SimpleDateFormat dateFormat;
 	private Logger log;
+	private NFLGameRecordDao dao;
 
 	private void initialize() {
 		dateFormat = new SimpleDateFormat(dateFormatString);
@@ -68,7 +83,7 @@ public class NFLGameRecordLoader {
 	}
 	
 	private void saveGamesToDatabase(List<NFLGameRecord> games) {
-		
+		dao.saveGames(games);
 	}
 
 	public String getDateFormatString() {
@@ -77,6 +92,22 @@ public class NFLGameRecordLoader {
 
 	public void setDateFormatString(String dateFormatString) {
 		this.dateFormatString = dateFormatString;
+	}
+
+	public SimpleDateFormat getDateFormat() {
+		return dateFormat;
+	}
+
+	public void setDateFormat(SimpleDateFormat dateFormat) {
+		this.dateFormat = dateFormat;
+	}
+
+	public NFLGameRecordDao getDao() {
+		return dao;
+	}
+
+	public void setDao(NFLGameRecordDao dao) {
+		this.dao = dao;
 	}
 	
 	

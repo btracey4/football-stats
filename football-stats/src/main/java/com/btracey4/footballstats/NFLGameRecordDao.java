@@ -1,39 +1,32 @@
 package com.btracey4.footballstats;
 
+import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
 
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.btracey4.footballstats.hibernate.NFLGameRecord;
-
+/**
+ * Hibernate Dao class for accessing 'nfl_game_records' schema
+ * @author btracey4
+ *
+ */
+@Transactional(readOnly=false)
 public class NFLGameRecordDao extends HibernateTemplate{
 	
-//	@Override
-//	public SessionFactory getSessionFactory(){
-//		if(super.getSessionFactory() != null) {
-//			return super.getSessionFactory();
-//		}
-//		Configuration cfg = new Configuration();
-//		Properties p = new Properties();
-//		//load properties file
-//		try{
-//			p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("application.properties"));
-//		} catch(Exception e){
-//			e.printStackTrace();
-//		}
-//
-//		cfg.setProperties(p);
-//		// build and set session factory
-//		this.setSessionFactory(cfg.buildSessionFactory());
-//		return super.getSessionFactory();
-//	}
-	
 	public void saveGames(List<NFLGameRecord> games) {
-		this.saveOrUpdate(games);
+	    Session session = super.getSessionFactory().openSession();
+		Iterator it = games.iterator();
+	    int i = 0;
+	    while(it.hasNext()){ 
+	        i++;
+	        Object game = it.next();
+	        session.saveOrUpdate(game);
+//	        if (i % 50 == 0) { session.flush(); session.clear(); }
+	    }
 	}
 	
 	@SuppressWarnings("unchecked")

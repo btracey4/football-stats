@@ -68,6 +68,8 @@ public enum Team {
 		return String.format("%s %s", location, name);
 	}
 	public static Team getTeamByName(String name) {
+		if(name.equals("St. Louis Rams")) return RAMS;
+		else if(name.equals("San Diego Chargers")) return CHARGERS;
 		for(Team team : values()) {
 			if(team.getName().equals(name) || team.getFullName().equals(name))
 				return team;
