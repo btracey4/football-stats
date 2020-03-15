@@ -32,7 +32,7 @@ public class NFLStatsDisplay {
 	 * Presents querying options and funnels to appropriate helper method
 	 */
 	private void mainMenu() {
-		System.out.println("Select an action: ");
+		System.out.println("\nSelect an action: ");
 		System.out.println("\t1) Display team records by season");
 		System.out.println("\t2) Display individual season records");
 		System.out.println("\t3) Exit");
@@ -42,7 +42,7 @@ public class NFLStatsDisplay {
 			input = scan.next();
 			response = Integer.parseInt(input);
 		} catch (NumberFormatException e) {
-			System.out.println("Invalid response give: \"" + input + "\" is not a valid number.\n Returning to main menu.");
+			System.out.println("Invalid response give: \"" + input + "\" is not a valid number.\n Returning to main menu.\n");
 			mainMenu();
 		}
 		switch(response) {
@@ -54,7 +54,7 @@ public class NFLStatsDisplay {
 		case 3:
 			break;
 			default:
-				System.out.println("Invalid response give: \"" + response + "\" is not an option.\n Returning to main menu.");
+				System.out.println("Invalid response give: \"" + response + "\" is not an option.\n Returning to main menu.\n");
 				mainMenu();
 		}
 	}
