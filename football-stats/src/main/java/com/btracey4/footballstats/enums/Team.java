@@ -68,10 +68,10 @@ public enum Team {
 		return String.format("%s %s", location, name);
 	}
 	public static Team getTeamByName(String name) {
-		if(name.equals("St. Louis Rams")) return RAMS;
-		else if(name.equals("San Diego Chargers")) return CHARGERS;
+		if(name.equalsIgnoreCase("St. Louis Rams")) return RAMS;
+		else if(name.equalsIgnoreCase("San Diego Chargers")) return CHARGERS;
 		for(Team team : values()) {
-			if(team.getName().equals(name) || team.getFullName().equals(name))
+			if(team.getName().equalsIgnoreCase(name) || team.getFullName().equalsIgnoreCase(name))
 				return team;
 		}
 		throw new IllegalArgumentException("No NFL team with the name: " + name);

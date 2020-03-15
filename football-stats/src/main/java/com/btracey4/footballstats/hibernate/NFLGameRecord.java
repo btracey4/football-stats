@@ -121,4 +121,8 @@ public class NFLGameRecord {
 		this.gameDate = gameDate;
 	}
 	
+	@Override
+	public String toString() {
+		return String.format("%d\tWeek %d\t%15s vs. %15s\tScore %2d - %2d", season, week,homeTeam,guestTeam,homeScore,guestScore);
+	}
 }

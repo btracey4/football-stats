@@ -34,5 +34,9 @@
 	<bean id="dao" class="com.btracey4.footballstats.NFLGameRecordDao">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
+	
+	<bean id="nflStatsDisplay" class="com.btracey4.footballstats.display.NFLStatsDisplay">
+		<property name="dao" ref="dao"/>
+	</bean>
 
 </beans>
