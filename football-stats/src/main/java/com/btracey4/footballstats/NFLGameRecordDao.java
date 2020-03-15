@@ -34,6 +34,12 @@ public class NFLGameRecordDao extends HibernateTemplate{
 	    }
 	}
 	
+	/**
+	 * Gets all {@link NFLGameRecord} database records for a specified season,
+	 * for all teams
+	 * @param season
+	 * @return All game records for selected season
+	 */
 	@SuppressWarnings("unchecked")
 	public List<NFLGameRecord> getGameRecordsBySeason(int season){
 		DetachedCriteria criteria = DetachedCriteria.forClass(NFLGameRecord.class);
@@ -41,6 +47,13 @@ public class NFLGameRecordDao extends HibernateTemplate{
 		return (List<NFLGameRecord>) this.findByCriteria(criteria);
 	}
 	
+	/**
+	 * Gets all {@link NFLGameRecord} database records for a specified season
+	 * and team
+	 * @param team
+	 * @param season
+	 * @return All game records for selected season and team
+	 */
 	@SuppressWarnings("unchecked")
 	public List<NFLGameRecord> getGameRecordsByTeamAndSeason(Team team, int season){
 		DetachedCriteria criteria = DetachedCriteria.forClass(NFLGameRecord.class);
@@ -52,6 +65,10 @@ public class NFLGameRecordDao extends HibernateTemplate{
 		return (List<NFLGameRecord>) this.findByCriteria(criteria);
 	}
 
+	/**
+	 * Get's all seasons with matchup data in the database
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Integer> getAllSeasons(){
 		String hql = "SELECT DISTINCT(season) FROM NFLGameRecord ORDER BY season";

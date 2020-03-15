@@ -3,16 +3,22 @@ package com.btracey4.footballstats.display;
 import java.util.List;
 import java.util.Scanner;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.btracey4.footballstats.NFLGameRecordDao;
 import com.btracey4.footballstats.enums.Team;
 import com.btracey4.footballstats.hibernate.NFLGameRecord;
 
+/**
+ * Class for querying and displaying loaded game record data
+ * @author btracey4
+ *
+ */
 public class NFLStatsDisplay {
 	Scanner scan;
 	NFLGameRecordDao dao;
 	
+	/**
+	 * Entry way for display logic
+	 */
 	public void display() {
 		initialize();
 		mainMenu();
@@ -20,9 +26,11 @@ public class NFLStatsDisplay {
 	
 	private void initialize() {
 		scan = new Scanner(System.in);
-		
 	}
 	
+	/**
+	 * Presents querying options and funnels to appropriate helper method
+	 */
 	private void mainMenu() {
 		System.out.println("Select an action: ");
 		System.out.println("\t1) Display team records by season");
@@ -51,6 +59,10 @@ public class NFLStatsDisplay {
 		}
 	}
 	
+	/**
+	 * Helper method to display a specific teams matchup records for a 
+	 * specific season
+	 */
 	private void displayTeamRecords() {
 		System.out.println("Input team name:");
 		String teamName;
